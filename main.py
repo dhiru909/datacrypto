@@ -3,9 +3,16 @@ import sqlite3
 from tkinter import *
 from tkinter import messagebox, Menu
 import requests
-
-pycrypto = Tk()
+from tkinter import ttk
+from ttkthemes import themed_tk as tk
+pycrypto=tk.ThemedTk("Calculator")
+pycrypto.get_themes()
+pycrypto.set_theme("elegance")
 pycrypto.title("My Crypto Portfolio")
+pycrypto.minsize(1000,300)
+pycrypto.grid_columnconfigure(0, weight=1)
+pycrypto.grid_rowconfigure(0, weight=1)
+pycrypto.configure(borderwidth=5,relief="sunken",bg="lightgreen")
 # pycrypto.iconbitmap("D:\\cprograms\\12 11 21\\python\\pycrypto\\favicon.ico")
 # database info 
 con = sqlite3.connect("coin.db")
@@ -102,65 +109,65 @@ def my_portfolio():
                 total_paid += t_paid
                 total_cv += current_value
                 portfolio_id = Label(pycrypto, text=coin[0], fg="black", bg="lightgray",
-                                     font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                                     font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                 portfolio_id.grid(row=coin_row, column=0, sticky=N+S+E+W)
 
                 coin_name = Label(pycrypto, text=data["data"][i]["name"], fg="black", bg="lightgray",
-                                  font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                                  font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                 coin_name.grid(row=coin_row, column=1, sticky=N+S+E+W)
 
                 price = Label(pycrypto, text="${0:.3f}".format(data["data"][i]["quote"]["USD"]["price"]), fg="black",
-                              bg="lightgray", highlightbackground="cyan", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                              bg="lightgray", highlightbackground="cyan", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                 price.grid(row=coin_row, column=2, sticky=N+S+E+W)
 
                 no_coins = Label(pycrypto, text=coin[2], fg="black", bg="lightgray",
-                                 font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                                 font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                 no_coins.grid(row=coin_row, column=3, sticky=N+S+E+W)
 
                 amount_paid = Label(pycrypto, text="${0:.3f}".format(
-                    t_paid), fg="black", bg="lightgray", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                    t_paid), fg="black", bg="lightgray", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                 amount_paid.grid(row=coin_row, column=4, sticky=N+S+E+W)
 
                 currenr_val = Label(pycrypto, text="${0:.3f}".format(
-                    current_value), fg="black", bg="lightgray", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                    current_value), fg="black", bg="lightgray", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                 currenr_val.grid(row=coin_row, column=5, sticky=N+S+E+W)
 
                 if pl_per_coin >= 0:
                     pl_coin = Label(pycrypto, text="${0:.3f}".format(
-                        pl_per_coin), fg="black", bg="green", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                        pl_per_coin), fg="black", bg="green", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                     pl_coin.grid(row=coin_row, column=6, sticky=N+S+E+W)
                 else:
                     pl_coin = Label(pycrypto, text="${0:.3f}".format(
-                        pl_per_coin), fg="black", bg="red", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                        pl_per_coin), fg="black", bg="red", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                     pl_coin.grid(row=coin_row, column=6, sticky=N+S+E+W)
 
                 if total_pl_with_coin >= 0:
                     tatal_pl = Label(pycrypto, text="${0:.3f}".format(
-                        total_pl_with_coin), fg="black", bg="green", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                        total_pl_with_coin), fg="black", bg="green", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                     tatal_pl.grid(row=coin_row, column=7, sticky=N+S+E+W)
                 else:
                     tatal_pl = Label(pycrypto, text="${0:.3f}".format(
-                        total_pl_with_coin), fg="black", bg="red", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                        total_pl_with_coin), fg="black", bg="red", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
                     tatal_pl.grid(row=coin_row, column=7, sticky=N+S+E+W)
                 coin_row += 1
         if total_pl >= 0:
 
             tatal_pl = Label(pycrypto, text="${0:.3f}".format(
-                total_pl), fg="black", bg="green", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                total_pl), fg="black", bg="green", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
             tatal_pl.grid(row=coin_row, column=7, sticky=N+S+E+W)
         else:
             tatal_pl = Label(pycrypto, text="${0:.3f}".format(
-                total_pl), fg="black", bg="red", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                total_pl), fg="black", bg="red", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
             tatal_pl.grid(row=coin_row, column=7, sticky=N+S+E+W)
         if c_count > len(coins):
             break
 
     tatal_paid = Label(pycrypto, text="${0:.3f}".format(
-        total_paid), fg="black", bg="lightgray", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+        total_paid), fg="black", bg="lightgray", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     tatal_paid.grid(row=coin_row, column=4, sticky=N+S+E+W)
 
     tatal_cv = Label(pycrypto, text="${0:.3f}".format(
-        total_cv), fg="black", bg="lightgray", font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+        total_cv), fg="black", bg="lightgray", font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     tatal_cv.grid(row=coin_row, column=5, sticky=N+S+E+W)
     # insert coin
     sym_txt = Entry(pycrypto, borderwidth=2, relief="groove")
@@ -171,7 +178,7 @@ def my_portfolio():
     amount_txt.grid(row=coin_row+1, column=3)
 
     add_coin = Button(pycrypto, text="Add Coin", fg="white", command=insert_coin, bg="#142E54",
-                      font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                      font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     add_coin.grid(row=coin_row+1, column=4, sticky=N+S+E+W)
 # UPDATE COIN
     sym_update = Entry(pycrypto, borderwidth=2, relief="groove")
@@ -183,52 +190,52 @@ def my_portfolio():
     id_update = Entry(pycrypto, borderwidth=2, relief="groove")
     id_update.grid(row=coin_row+2, column=0)
     update_coin = Button(pycrypto, text="Update Coin", fg="white", command=update_coin, bg="#142E54",
-                         font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                         font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     update_coin.grid(row=coin_row+2, column=4, sticky=N+S+E+W)
     # delete coin
     id_delete = Entry(pycrypto, borderwidth=2, relief="groove")
     id_delete.grid(row=coin_row+3, column=0)
     delete_coin = Button(pycrypto, text="Delete Coin", fg="white", command=delete_coin, bg="#142E54",
-                         font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                         font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     delete_coin.grid(row=coin_row+3, column=4, sticky=N+S+E+W)
     # refresh....
     data = ""
     Refresh = Button(pycrypto, text="Refresh", fg="white", command=reset, bg="#142E54",
-                     font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                     font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     Refresh.grid(row=coin_row+1, column=7, sticky=N+S+E+W)
 
 
 def app_header():
     portfolio_id = Label(pycrypto, text="Portfolio ID", fg="white", bg="#142E54",
-                         font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                         font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     portfolio_id.grid(row=0, column=0, sticky=N+S+E+W)
 
     coin_name = Label(pycrypto, text="COIN NAME", fg="white", bg="#142E54",
-                      font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                      font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     coin_name.grid(row=0, column=1, sticky=N+S+E+W)
 
     price = Label(pycrypto, text="PRICE", fg="white", bg="#142E54",
-                  font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                  font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     price.grid(row=0, column=2, sticky=N+S+E+W)
 
     no_coins = Label(pycrypto, text="Coins Owned", fg="white", bg="#142E54",
-                     font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                     font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     no_coins.grid(row=0, column=3, sticky=N+S+E+W)
 
     amount_paid = Label(pycrypto, text="Amount Paid", fg="white", bg="#142E54",
-                        font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                        font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     amount_paid.grid(row=0, column=4, sticky=N+S+E+W)
 
     currenr_val = Label(pycrypto, text="Current Value", fg="white", bg="#142E54",
-                        font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                        font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     currenr_val.grid(row=0, column=5, sticky=N+S+E+W)
 
     pl_coin = Label(pycrypto, text="P/L per Coin", fg="white", bg="#142E54",
-                    font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                    font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     pl_coin.grid(row=0, column=6, sticky=N+S+E+W)
 
     tatal_pl = Label(pycrypto, text="Total P/L for Coin", fg="white", bg="#142E54",
-                     font="Lato 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
+                     font="helvetica 12 bold", borderwidth=2, relief="groove", padx=5, pady=5)
     tatal_pl.grid(row=0, column=7, sticky=N+S+E+W)
 
 
